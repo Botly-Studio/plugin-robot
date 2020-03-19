@@ -16,9 +16,9 @@ Robot.init = function () {
 
     Robot.bindelement('download_button', function () {
         if (isMacintosh()) {
-            window.open("https://github.com/LaMachinerie/BotlyStudio-Agent-Window/releases/download/1.0.8/BotlyStudio-Agent_MacOS.app.zip");
+            window.open("https://github.com/Botly-Studio/uploadAgent/releases/download/1.0.10/BotlyStudio-Agent_MacOS.app.zip");
         } else if (isWindows()) {
-            window.open("https://github.com/LaMachinerie/BotlyStudio-Agent-Window/releases/download/1.0.8/BotlyStudio-Agent_Windows_x64_x86.exe");
+            window.open("https://github.com/Botly-Studio/uploadAgent/releases/download/1.0.10/BotlyStudio-Agent_Windows_x64_x86.exe");
         }
     });
 
@@ -174,15 +174,15 @@ Robot.updateTab = function () {
             Robot.connect();
             break;
         case 2:
+            Robot.hideLoader();
+            Robot.hideButton();
+            Robot.hideText();
+            break;
+        case 3:
             Robot.showLoader();
             Robot.hideButton();
             Robot.setInfoText("Initialisation de la communication série")
             Robot.checkSerial();
-            break;
-        case 3:
-            Robot.hideLoader();
-            Robot.hideButton();
-            Robot.hideText();
             break;
         case 4:
             Robot.showLoader();
@@ -212,15 +212,15 @@ Robot.error = function () {
             document.getElementById('download_button').className = 'arduino_blue center waves-effect waves-light btn';
             break;
         case 2:
+
+            break;
+        case 3:
             Robot.hideLoader();
             Robot.setErrorText("Botly-Studio n'est pas parvenu à communiquer avec le robot");
             Robot.setActionButton("Reéssayer", "refresh", function () {
                 Robot.updateTab();
             });
             document.getElementById('reset_button').className = 'arduino_blue center waves-effect waves-light btn';
-            break;
-        case 3:
-
             break;
         case 4:
             Robot.hideLoader();
